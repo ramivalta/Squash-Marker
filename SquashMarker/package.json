@@ -1,0 +1,17 @@
+{
+  "name": "SquashMarker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "lodash-node": "^3.7.0",
+    "moment": "^2.10.2",
+    "react-native": "^0.4.0",
+    "react-native-blur": "^0.4.1",
+    "react-native-icons": "0.0.5",
+    "react-native-navbar": "^0.4.6",
+    "react-native-store": "0.0.1"
+  }
+}
