@@ -25,8 +25,7 @@
 		2731F15F1AEA668000032C72 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2731F15E1AEA668000032C72 /* ionicons.ttf */; };
 		2731F1661AEA73A500032C72 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2731F15C1AEA65BF00032C72 /* libReactNativeIcons.a */; };
 		2731F1681AEA7EB300032C72 /* background_mock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2731F1671AEA7EB300032C72 /* background_mock.png */; };
-		2731F16B1AEA81F300032C72 /* RNBlur in Resources */ = {isa = PBXBuildFile; fileRef = 2731F1691AEA81F300032C72 /* RNBlur */; };
-		2731F16C1AEA81F300032C72 /* RNVibrancy in Resources */ = {isa = PBXBuildFile; fileRef = 2731F16A1AEA81F300032C72 /* RNVibrancy */; };
+		27E7327A1AEB6B7A00ABC6BD /* libRNModal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E732791AEB6B5D00ABC6BD /* libRNModal.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +100,13 @@
 			remoteGlobalIDString = 2F5A3EB81ACDBF8000439386;
 			remoteInfo = ReactNativeIcons;
 		};
+		27E732781AEB6B5D00ABC6BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E732741AEB6B5D00ABC6BD /* RNModal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNModal;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -140,8 +146,7 @@
 		2731F1571AEA65BF00032C72 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
 		2731F15E1AEA668000032C72 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		2731F1671AEA7EB300032C72 /* background_mock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_mock.png; sourceTree = "<group>"; };
-		2731F1691AEA81F300032C72 /* RNBlur */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNBlur; path = "node_modules/react-native-blur/RNBlur"; sourceTree = "<group>"; };
-		2731F16A1AEA81F300032C72 /* RNVibrancy */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNVibrancy; path = "node_modules/react-native-blur/RNVibrancy"; sourceTree = "<group>"; };
+		27E732741AEB6B5D00ABC6BD /* RNModal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNModal.xcodeproj; path = "node_modules/react-native-modal/RNModal.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,7 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2731F1661AEA73A500032C72 /* libReactNativeIcons.a in Frameworks */,
+				27E7327A1AEB6B7A00ABC6BD /* libRNModal.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00481BE81AC0C86700671115 /* libRCTWebSocketDebugger.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -169,6 +174,7 @@
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
+				2731F1661AEA73A500032C72 /* libReactNativeIcons.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +260,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				2731F1671AEA7EB300032C72 /* background_mock.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -274,6 +281,14 @@
 			isa = PBXGroup;
 			children = (
 				2731F15C1AEA65BF00032C72 /* libReactNativeIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27E732751AEB6B5D00ABC6BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27E732791AEB6B5D00ABC6BD /* libRNModal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,9 +329,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2731F1691AEA81F300032C72 /* RNBlur */,
-				2731F16A1AEA81F300032C72 /* RNVibrancy */,
-				2731F1671AEA7EB300032C72 /* background_mock.png */,
+				27E732741AEB6B5D00ABC6BD /* RNModal.xcodeproj */,
 				2731F15E1AEA668000032C72 /* ionicons.ttf */,
 				2731F1571AEA65BF00032C72 /* ReactNativeIcons.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* SquashMarker */,
@@ -449,6 +462,10 @@
 					ProductGroup = 2731F1581AEA65BF00032C72 /* Products */;
 					ProjectRef = 2731F1571AEA65BF00032C72 /* ReactNativeIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = 27E732751AEB6B5D00ABC6BD /* Products */;
+					ProjectRef = 27E732741AEB6B5D00ABC6BD /* RNModal.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -522,6 +539,13 @@
 			remoteRef = 2731F15B1AEA65BF00032C72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		27E732791AEB6B5D00ABC6BD /* libRNModal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNModal.a;
+			remoteRef = 27E732781AEB6B5D00ABC6BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -551,11 +575,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2731F15F1AEA668000032C72 /* ionicons.ttf in Resources */,
-				2731F16B1AEA81F300032C72 /* RNBlur in Resources */,
-				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
-				2731F16C1AEA81F300032C72 /* RNVibrancy in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2731F1681AEA7EB300032C72 /* background_mock.png in Resources */,
+				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

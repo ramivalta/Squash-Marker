@@ -27,7 +27,7 @@
   var NavigationBar = require('react-native-navbar');
   var Icon = require('react-native-icons');
   var RNS = require('react-native-store');
-  var BlurView = require('react-native-blur').BlurView;  
+  var BlurView = require('react-native-blur').BlurView;
 
   var MatchView = require('./matchView');
   var LayoutAnimationConfigs = require('./LayoutAnimations');

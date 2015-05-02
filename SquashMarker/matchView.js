@@ -18,6 +18,7 @@
       LayoutAnimation,
       PixelRatio,
       AsyncStorage,
+      PanResponder,
       Image
   } = React;
 
@@ -27,6 +28,8 @@
   var NavigationBar = require('react-native-navbar');
   var Icon = require('react-native-icons');
   var RNS = require('react-native-store');
+
+  var Modal = require('react-native-modal');
 
   var LayoutAnimationConfigs = require('./LayoutAnimations');
 
@@ -820,61 +823,52 @@
       render: function() {
           var self = this;
 
-          if (!this.state.tossDecided) {
-            return (
-                    <Image source={require('image!background_mock')} style={{width: DeviceWidth, height: DeviceHeight, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0}} ref={'bg'}>
-                        <BlurView style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: DeviceWidth, height: DeviceHeight, backgroundColor: 'transparent'}} ref={'blur'} blurType='dark'>
-                            <CoinModal handleToss={this.handleToss} tossDecided={this.state.tossDecided} match={this.props.match} />
-                        </BlurView>
-                    </Image>
-            );
-          } else
               return (
-                  <View style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0}}>
+                <View style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0}}>
 
-                      <View style={{flex: 1, top: 0, height: 64, backgroundColor: 'white'}}>
-                          <View style={{height: 24}}></View>
-                          <View style={{flexDirection: 'row', height: 40, alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1 / PixelRatio.get(), borderBottomColor: '#777777'}} >
-                              <View style={{flexDirection: 'row',  marginRight: 8, height: 40, marginLeft: 8}}>
-                                  <TouchableHighlight onPress={this.handleQuit} underlayColor={'transparent'} activeOpacity={0.25} style={{}}>
-                                      <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center', overflow: 'hidden'}}>
-                                          <Icon
-                                              name='ion|ios-close-empty'
-                                              color='#0076ff'
-                                              size={28}
-                                              style={{width: 28, height: 28}}
+                    <View style={{flex: 1, top: 0, height: 64, backgroundColor: 'white'}}>
+                        <View style={{height: 24}}></View>
+                        <View style={{flexDirection: 'row', height: 40, alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1 / PixelRatio.get(), borderBottomColor: '#777777'}} >
+                            <View style={{flexDirection: 'row',  marginRight: 8, height: 40, marginLeft: 8}}>
+                                <TouchableHighlight onPress={this.handleQuit} underlayColor={'transparent'} activeOpacity={0.25} style={{}}>
+                                    <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center', overflow: 'hidden'}}>
+                                        <Icon
+                                            name='ion|ios-close-empty'
+                                            color='#0076ff'
+                                            size={28}
+                                            style={{width: 28, height: 28}}
                                           />
-                                      </View>
-                                  </TouchableHighlight>
-                              </View>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
 
-                              <View style={{flexDirection: 'row',  marginRight: 8, height: 40, marginLeft: 8}}>
-                                  <TouchableHighlight onPress={this.handleUndo} underlayColor={'transparent'} activeOpacity={0.25} style={{marginLeft: 16, marginRight: 16}}>
+                            <View style={{flexDirection: 'row',  marginRight: 8, height: 40, marginLeft: 8}}>
+                                <TouchableHighlight onPress={this.handleUndo} underlayColor={'transparent'} activeOpacity={0.25} style={{marginLeft: 16, marginRight: 16}}>
 
-                                      <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center'}}>
-                                          <Icon
-                                              name='ion|ios-undo'
-                                              color='#0076ff'
-                                              size={22}
-                                              style={{width: 22, height: 22, backgroundColor: 'transparent'}}
-                                          />
-                                      </View>
-                                  </TouchableHighlight>
+                                    <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center'}}>
+                                        <Icon
+                                            name='ion|ios-undo'
+                                            color='#0076ff'
+                                            size={22}
+                                            style={{width: 22, height: 22, backgroundColor: 'transparent'}}
+                                        />
+                                    </View>
+                                </TouchableHighlight>
 
-                                  <TouchableHighlight  underlayColor={'transparent'} activeOpacity={0.25} style={{marginLeft: 16}} onPress={this.toggleDecisionButtons}>
-                                      <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center'}}>
-                                          <Icon
-                                              name='ion|ios-settings'
-                                              color='#0076ff'
-                                              size={22}
-                                              style={{width: 22, height: 22}}
-                                          />
-                                      </View>
-                                  </TouchableHighlight>
-                              </View>
-                          </View>
-                      </View>
-                      <View style={{position: 'absolute', top: 64, bottom: 0, left: 0, right: 0, backgroundColor: '#eeeeee', marginTop: 0}}>
+                                <TouchableHighlight  underlayColor={'transparent'} activeOpacity={0.25} style={{marginLeft: 16}} onPress={this.toggleDecisionButtons}>
+                                    <View style={{backgroundColor: 'transparent', borderRadius: 17, borderColor: '#0076ff', borderWidth: 1, width: 34, height: 34, alignItems: 'center', justifyContent: 'center'}}>
+                                        <Icon
+                                            name='ion|ios-settings'
+                                            color='#0076ff'
+                                            size={22}
+                                            style={{width: 22, height: 22}}
+                                        />
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={{position: 'absolute', top: 64, bottom: 0, left: 0, right: 0, backgroundColor: '#eeeeee', marginTop: 0}}>
 
                         <ScoreList scores={this.state.scores} match={this.props.match} isGameBall={this.isGameBall} isMatchBall={this.isMatchBall} isMatchSet={this.isMatchSet} />
 
@@ -937,38 +931,64 @@
 
                         <View style={[{width: (DeviceWidth - (DeviceWidth * 0.125)) / 2 - 36, backgroundColor: '#dddddd', height: 30, borderRadius: 15, borderWidth: 1 / PixelRatio.get(), borderColor: '#cccccc', position: 'absolute', top: DeviceHeight - 95 - 64, overflow: 'hidden'}, _.last(this.state.scores).toServe === '1' && {left: 24, right: null}, _.last(this.state.scores).toServe === '2' && {right: 24, left: null}]} >
 
-                          <View style={[{backgroundColor: 'transparent', alignItems: 'center', flex: 1, position: 'absolute', width: (DeviceWidth - (DeviceWidth * 0.125)) / 2 - 36,  }, this._currentServeSide === 'right' && {alignItems: 'flex-start'}, this._currentServeSide === 'left' && {alignItems: 'flex-end'}]}>
-                            {this._currentServeSide === 'right' &&
-                                <Text style={{color: 'black', flex: 1, marginTop: 6, fontSize: '14', marginLeft: 12, marginRight: 12}}>Right</Text>
-                            }
-                            {this._currentServeSide === 'left' &&
-                                <Text style={{color: 'black', flex: 1, marginTop: 6, fontSize: '14', marginLeft: 12, marginRight: 12}}>Left</Text>
-                            }
-                          </View>
+                            <View style={[{backgroundColor: 'transparent', alignItems: 'center', flex: 1, position: 'absolute', width: (DeviceWidth - (DeviceWidth * 0.125)) / 2 - 36,  }, this._currentServeSide === 'right' && {alignItems: 'flex-start'}, this._currentServeSide === 'left' && {alignItems: 'flex-end'}]}>
+                                {this._currentServeSide === 'right' &&
+                                    <Text style={{color: 'black', flex: 1, marginTop: 6, fontSize: '14', marginLeft: 12, marginRight: 12}}>Right</Text>
+                                }
+                                {this._currentServeSide === 'left' &&
+                                    <Text style={{color: 'black', flex: 1, marginTop: 6, fontSize: '14', marginLeft: 12, marginRight: 12}}>Left</Text>
+                                }
+                            </View>
 
-                          <View style={{width: 28, height: 28, borderRadius: 14, backgroundColor: '#f7f7f7', position: 'absolute', left: 0, top: 1 / PixelRatio.get(), borderWidth: 1 / PixelRatio.get(), borderColor: '#555555', shadowColor: '#444444', shadowRadius: 6, shadowOpacity: 0.5, shadowOffset: {height: 0, width: 0}}} ref={'serveSideHighlight'}></View>
+                            <View style={{width: 28, height: 28, borderRadius: 14, backgroundColor: '#f7f7f7', position: 'absolute', left: 0, top: 1 / PixelRatio.get(), borderWidth: 1 / PixelRatio.get(), borderColor: '#555555', shadowColor: '#444444', shadowRadius: 6, shadowOpacity: 0.5, shadowOffset: {height: 0, width: 0}}} ref={'serveSideHighlight'}></View>
 
-                          <TouchableHighlight style={{flex: 1, height: 30}} onPress={this.handleServeSideToggle.bind(null, 'toggle', null, null, 'fromUser')} underlayColor={'transparent'}>
+                            <TouchableHighlight style={{flex: 1, height: 30}} onPress={this.handleServeSideToggle.bind(null, 'toggle', null, null, 'fromUser')} underlayColor={'transparent'}>
                             <Text></Text>
-                          </TouchableHighlight>
+                            </TouchableHighlight>
                         </View>
 
                         <DecisionButtonsLeft handleYesLet={this.handleYesLet} handleNoLet={this.handleNoLet} handleStroke={this.handleStroke} showButtons={this.state.showDecisionButtons} />
                         <DecisionButtonsRight handleYesLet={this.handleYesLet} handleNoLet={this.handleNoLet} handleStroke={this.handleStroke} showButtons={this.state.showDecisionButtons} />
                     </View>
 
+                    <Modal isVisible={!this.state.tossDecided} hideCloseButton={true} backdropType='blur' backdropBlur='dark' style={{backgroundColor: 'transparent', margin: 0, height: DeviceHeight, alignItems: 'center'}}>
+                        {/*}<CoinModal handleToss={this.handleToss} tossDecided={this.state.tossDecided} match={this.props.match} /> */}
 
+                        <View style={{height: DeviceHeight, flex: 1, alignItems: 'center', justifyContent: 'space-around'}}>
+                            <View style={{height: 80}}>
 
+                                <View style={{height: 40, alignItems: 'center', justifyContent: 'space-around', width: DeviceWidth}}>
+                                    <Text style={{fontSize: 18, color: '#eeeeee', fontWeight: '300', alignText: 'center'}}>
+                                        Cointoss won by
+                                    </Text>
+
+                                </View>
+                                <View style={{flexDirection: 'row', opacity: 1, height: 40, alignItems: 'center', justifyContent: 'space-around', width: DeviceWidth, backgroundColor: 'transparent', flex: 1}}>
+                                    <TouchableHighlight style={{backgroundColor: '#222222', opacity: 0.95, padding: 12, borderRadius: 8, flexWrap: 'nowrap', height: 40, width: DeviceWidth / 2 - 20}} onPress={this.handleToss.bind(null, '1')}>
+                                        <Text style={{textAlign: 'center', fontSize: 18, color: 'white',  fontWeight: '300', opacity: 1, lineHeight: 18, height: 18, containerBackgroundColor: 'transparent'}} numberOfLines={1}>
+                                            {this.props.match.playerOne}
+                                        </Text>
+                                    </TouchableHighlight>
+
+                                    <TouchableHighlight style={{backgroundColor: '#222222', opacity: 0.95, padding: 12, borderRadius: 8, flexWrap: 'nowrap', height: 40, width: DeviceWidth / 2 - 20}} onPress={this.handleToss.bind(null, '2')}>
+                                        <Text style={{textAlign: 'center', fontSize: 18, color: 'white',  fontWeight: '300', opacity: 1, lineHeight: 18, height: 18, containerBackgroundColor: 'transparent'}} numberOfLines={1}>
+                                            {this.props.match.playerTwo}
+                                        </Text>
+                                    </TouchableHighlight>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
                 </View>
           );
       }
-  });
+    });
 
-  var DecisionButtonsLeft = React.createClass({
-      render: function() {
-          return (
-              <View style={[{flexDirection: 'column', position: 'absolute', left: -15, top: DeviceHeight / 2 - 102 -64, width: 84, height: 204, backgroundColor: 'transparent', alignItems: 'center', borderRadius: 24, opacity: 0.85}, !this.props.showButtons && { left: -85}]}>
-                  <TouchableHighlight style={[styles.decisionButton, styles.letButton, {marginRight: -10}]}  underlayColor={'green'} onPress={this.props.handleYesLet.bind(null, '1')}>
+    var DecisionButtonsLeft = React.createClass({
+        render: function() {
+            return (
+                <View style={[{flexDirection: 'column', position: 'absolute', left: -15, top: DeviceHeight / 2 - 102 -64, width: 84, height: 204, backgroundColor: 'transparent', alignItems: 'center', borderRadius: 24, opacity: 0.85}, !this.props.showButtons && { left: -85}]}>
+                    <TouchableHighlight style={[styles.decisionButton, styles.letButton, {marginRight: -10}]}  underlayColor={'green'} onPress={this.props.handleYesLet.bind(null, '1')}>
                       <Text style={{fontSize: 10, fontWeight: '700'}}>YES LET</Text>
                   </TouchableHighlight>
 
@@ -978,96 +998,78 @@
 
                   <TouchableHighlight style={[styles.decisionButton, styles.strokeButton, {marginRight: -10}]}  underlayColor={'red'} onPress={this.props.handleStroke.bind(null, '1')}>
                     <Text style={{fontSize: 10, fontWeight: '700'}}>STROKE</Text>
-                  </TouchableHighlight>
-              </View>
-          );
-      }
-  });
+                    </TouchableHighlight>
+                </View>
+            );
+        }
+    });
 
-  var DecisionButtonsRight = React.createClass({
-      render: function() {
-          return (
-              <View style={[{flexDirection: 'column', position: 'absolute', right: -15, top: DeviceHeight / 2 - 102 -64, width: 84, height: 204, backgroundColor: 'transparent', alignItems: 'center', borderRadius: 24, opacity: 0.85}, !this.props.showButtons && {right: -85}]}>
-                  <TouchableHighlight style={[styles.decisionButton, styles.letButton, {marginLeft: -10}]}   underlayColor={'green'} onPress={this.props.handleYesLet.bind(null, '2')}>
-                      <Text style={{fontSize: 10, fontWeight: '700'}}>YES LET</Text>
-                  </TouchableHighlight>
+    var DecisionButtonsRight = React.createClass({
+        render: function() {
+            return (
+                <View style={[{flexDirection: 'column', position: 'absolute', right: -15, top: DeviceHeight / 2 - 102 -64, width: 84, height: 204, backgroundColor: 'transparent', alignItems: 'center', borderRadius: 24, opacity: 0.85}, !this.props.showButtons && {right: -85}]}>
+                    <TouchableHighlight style={[styles.decisionButton, styles.letButton, {marginLeft: -10}]}   underlayColor={'green'} onPress={this.props.handleYesLet.bind(null, '2')}>
+                        <Text style={{fontSize: 10, fontWeight: '700'}}>YES LET</Text>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight style={[styles.decisionButton, styles.noLetButton, {marginLeft: -10}]}  underlayColor={'orange'} onPress={this.props.handleNoLet.bind(null, '2')}>
-                      <Text style={{fontSize: 10, fontWeight: '700'}}>NO LET</Text>
-                  </TouchableHighlight>
+                    <TouchableHighlight style={[styles.decisionButton, styles.noLetButton, {marginLeft: -10}]}  underlayColor={'orange'} onPress={this.props.handleNoLet.bind(null, '2')}>
+                        <Text style={{fontSize: 10, fontWeight: '700'}}>NO LET</Text>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight style={[styles.decisionButton, styles.strokeButton, {marginLeft: -10}]}  underlayColor={'red'} onPress={this.props.handleStroke.bind(null, '2')}>
-                      <Text style={{fontSize: 10, fontWeight: '700'}}>STROKE</Text>
-                  </TouchableHighlight>
-              </View>
-          );
-      }
-  });
+                    <TouchableHighlight style={[styles.decisionButton, styles.strokeButton, {marginLeft: -10}]}  underlayColor={'red'} onPress={this.props.handleStroke.bind(null, '2')}>
+                        <Text style={{fontSize: 10, fontWeight: '700'}}>STROKE</Text>
+                    </TouchableHighlight>
+                </View>
+            );
+        }
+    });
 
-  var CoinModal = React.createClass({
-      handleToss: function(player) {
-          var config = LayoutAnimationConfigs[1];
-          LayoutAnimation.configureNext(config);
-          this.props.handleToss(player);
-      },
+    var CoinModal = React.createClass({
+        handleToss: function(player) {
+            var config = LayoutAnimationConfigs[1];
+            LayoutAnimation.configureNext(config);
+            this.props.handleToss(player);
+        },
 
-      render: function() {
-          if (!this.props.tossDecided) {
-              var view =
-                  <View style={{position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', justifyContent: 'center', height: DeviceHeight, width: DeviceWidth, flex: 1, backgroundColor: '#555555', opacity: 0.45}} ref={'toServeModal'}>
-                      <View style={{flex: 1, width: DeviceWidth, opacity: 1, position: 'absolute', top: DeviceHeight / 2 - 40 - 42, height: 20}}>
-                          <Text style={{textAlign: 'center', fontSize: 18, color: 'white', fontWeight: '100'}}>
-                              Cointoss won by
-                          </Text>
-                      </View>
-
-                      <View style={{flexDirection: 'row', flex: 1, opacity: 1, position: 'absolute', top: DeviceHeight / 2 - 42, height: 40, alignItems: 'center', width: DeviceWidth}}>
-                          <View style={{flex: 1}}>
-                              <TouchableHighlight style={{backgroundColor: '#222222', opacity: 0.95, padding: 12, margin: 8, borderRadius: 8, flexWrap: 'nowrap', height: 40}} onPress={this.handleToss.bind(null, '1')}>
-                                  <Text style={{textAlign: 'center', fontSize: 18, color: 'white',  fontWeight: '100', opacity: 1, lineHeight: 18, height: 18}} numberOfLines={1}>
-                                      {this.props.match.playerOne}
-                                  </Text>
-                              </TouchableHighlight>
-                          </View>
-
-                          <View style={{flex: 1}}>
-                              <TouchableHighlight style={{backgroundColor: '#222222', opacity: 0.95, padding: 12, margin: 8, borderRadius: 8, flexWrap: 'nowrap', height: 40}} onPress={this.handleToss.bind(null, '2')}>
-                                  <Text style={{textAlign: 'center', fontSize: 18, color: 'white',  fontWeight: '100', opacity: 1, lineHeight: 18, height: 18}} numberOfLines={1}>
-                                      {this.props.match.playerTwo}
-                                  </Text>
-                              </TouchableHighlight>
-                          </View>
-                      </View>
-                  </View>;
-
-              return view;
-          } else {
-              return <View></View>;
-          }
-      }
-  });
+        render: function() {
+            if (!this.props.tossDecided) {
+                var view =
+                    <View style={{backgroundColor: 'rgba(0, 0, 0, 0.25)', flex: 1, height: 80, position: 'absolute', left: -20, top: 0, right: 0, bottom: 0, width: DeviceWidth}}>
+                        {/*<Text style={{textAlign: 'center', fontSize: 18, color: 'black', fontWeight: '100', containerBackgroundColor: 'transparent'}}>
+                            Cointoss won by
+                        </Text>*/}
 
 
-  var ScoreList = React.createClass({
-      shouldComponentUpdate: function(nextProps, nextState, nextContext) {
-          if (this.props !== nextProps || this.state !== nextState) {
-              console.log("COMPONENT SHOULD UPDATE");
-              return true;
-          } else return false;
-      },
+                    </View>;
 
-      componentDidMount: function() {
-          var self = this;
-          setTimeout(function() {
-              self.refs.list.scrollTo(150);
-              setTimeout(function() {
-                  self.refs.list.scrollTo(-50);
-                  setTimeout(function() {
-                      self.refs.list.scrollTo(0);
-                  }, 250);
-              }, 150);
-          }, 1);
-      },
+                return view;
+            } else {
+                return <View style={{backgroundColor: 'transparent'}}></View>;
+            }
+        }
+    });
+
+
+    var ScoreList = React.createClass({
+        shouldComponentUpdate: function(nextProps, nextState, nextContext) {
+            if (this.props !== nextProps || this.state !== nextState) {
+                console.log("COMPONENT SHOULD UPDATE");
+                return true;
+            } else return false;
+        },
+
+        componentDidMount: function() {
+            var self = this;
+            setTimeout(function() {
+                self.refs.list.scrollTo(150);
+                setTimeout(function() {
+                    self.refs.list.scrollTo(-50);
+                    setTimeout(function() {
+                        self.refs.list.scrollTo(0);
+                    }, 250);
+                }, 150);
+            }, 1);
+        },
 
       componentDidUpdate: function(prevProps, prevState) {
           var self = this;

@@ -11,7 +11,6 @@
     var {
         AppRegistry,
         StyleSheet,
-        TextInput,
         Text,
         View,
         ScrollView,
@@ -326,22 +325,6 @@
                           <View>
                               <View style={styles.outerRow} {...self._panGesture.panHandlers} onTouchStart={self.handleTouchStart.bind(null, data.id)} key={'key_' + data.id} ref={'parent_ref_' + data.id}>
                                   <View style={styles.row} ref={'ref_' + data.id} pointerEvents={'none'}>
-                                      {!data.matchOver &&
-                                          <Icon
-                                              name='ion|ios-infinite'
-                                              size={24}
-                                              color='#cccccc'
-                                              style={{width: 32, height: 32}}
-                                          />
-                                      }
-                                      {data.matchOver &&
-                                          <Icon
-                                              name='ion|ios-checkmark-empty'
-                                              size={24}
-                                              color='#cccccc'
-                                              style={{width: 32, height: 32}}
-                                          />
-                                      }
 
                                       <Text style={styles.timeStamp} onPress={() => console.log(data)}>
                                           {data.startTime && moment(data.startTime).calendar()}
@@ -359,12 +342,22 @@
                                       <Text style={styles.playerTwo} numberOfLines={1}>
                                           {data.playerTwo}
                                       </Text>
-                                      <Icon
-                                          name='ion|chevron-right'
-                                          size={24}
-                                          color='#555555'
-                                          style={{marginRight: 8, width: 24, height: 24}}>
-                                      </Icon>
+                                        {data.matchOver ?
+                                            <Icon
+                                                name='ion|ios-list'
+                                                size={24}
+                                                color='#777777'
+                                                style={{marginRight: 8, width: 24, height: 24}}
+
+                                            />
+
+                                            : <Icon
+                                                name='ion|chevron-right'
+                                                size={24}
+                                                color='#555555'
+                                                style={{marginRight: 8, width: 24, height: 24}}
+                                            />
+                                        }
                                   </View>
                               </View>
 
