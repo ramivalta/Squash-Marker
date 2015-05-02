@@ -368,7 +368,7 @@
                         style={{flex: 1, backgroundColor: '#ffffff'}}
                         //navigationBarHidden={this.state.hideNavbar}
                         configureScene={function(route) {
-                            if (route._id === 'matchView')
+                            if (route._id === 'matchView' || route._id === 'summaryView')
                                 return Navigator.SceneConfigs.FloatFromBottom;
                             else
                                 return Navigator.SceneConfigs.FloatFromRight;
@@ -689,7 +689,7 @@
             });
 
             var matchSummaryView = {
-                _id: null,
+                _id: 'summaryView',
                 component: MatchSummaryView,
                 title: 'Match Summary',
                 passProps: {
