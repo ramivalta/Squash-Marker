@@ -11,7 +11,7 @@
     "react-native": "^0.4.0",
     "react-native-blur": "^0.4.1",
     "react-native-icons": "0.0.5",
-    "react-native-modal": "^0.2.12",
+    "react-native-modal": "^0.2.13",
     "react-native-navbar": "^0.4.6",
     "react-native-overlay": "^0.1.7",
     "react-native-store": "0.0.1",

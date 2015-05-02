@@ -36,20 +36,6 @@
   var serveButtonWidth = DeviceWidth / 2 - 40;
 
   var styles = StyleSheet.create({
-    serveHighlight: {
-        position: 'absolute',
-        width: DeviceWidth / 2 - 40 + 12,
-        height: 36,
-        backgroundColor: 'red',
-        borderRadius: 12,
-        opacity: 0.25,
-        left: -24,
-        top: -10
-    },
-    serveHighlightInactive: {
-        //backgroundColor: ''
-    },
-
     serveSideButton: {
         height: 36,
         borderRadius: 12,
@@ -197,7 +183,8 @@
               id: this.props.match.id,
               p1GamesWon: 0,
               p2GamesWon: 0,
-              showDecisionButtons: true
+              showDecisionButtons: true,
+              tossDecided: this.props.match.tossDecided
           };
       },
 
@@ -958,7 +945,7 @@
                             <View style={{height: 80}}>
 
                                 <View style={{height: 40, alignItems: 'center', justifyContent: 'space-around', width: DeviceWidth}}>
-                                    <Text style={{fontSize: 18, color: '#eeeeee', fontWeight: '300', alignText: 'center'}}>
+                                    <Text style={{fontSize: 18, color: '#eeeeee', fontWeight: '300', textAlign: 'center'}}>
                                         Cointoss won by
                                     </Text>
 
