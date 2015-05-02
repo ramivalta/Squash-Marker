@@ -857,7 +857,7 @@
                     </View>
                     <View style={{position: 'absolute', top: 64, bottom: 0, left: 0, right: 0, backgroundColor: '#eeeeee', marginTop: 0}}>
 
-                        <ScoreList scores={this.state.scores} match={this.props.match} isGameBall={this.isGameBall} isMatchBall={this.isMatchBall} isMatchSet={this.isMatchSet} />
+                        <ScoreList scores={this.state.scores} match={this.props.match} isGameBall={this.isGameBall} isMatchBall={this.isMatchBall} isMatchSet={this.isMatchSet} isGameSet={this.isGameSet} />
 
                         <View style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: 98, backgroundColor: '#eeeeee', top: DeviceHeight - 98 - 64, overflow: 'hidden', borderTopWidth: 1 / PixelRatio.get(), borderTopColor: '#cccccc'}}>
 
@@ -1095,6 +1095,19 @@
       },
 
       renderRow: function(row, index) {
+
+        if (this.props.isGameSet(row)) {
+            var g =
+                <View style={{alignItems: 'center', flex: 1, height: 36, justifyContent: 'center'}} key={'gameball_' + index}>
+                    <Text style={{color: '#777777', fontSize: 11, height: 11}}>
+                        Game to { }
+                        {_.last(this.props.scores).p1score > _.last(this.props.scores).p2score ? <Text style={{color: '#777777', fontSize: 11, height: 11}}>{this.props.match.playerOne}</Text> : <Text style={{color: '#777777', fontSize: 11, height: 11}}>{this.props.match.playerTwo}</Text>
+                        }
+                    </Text>
+                </View>;
+            return g;
+          }
+
           if (this.props.isMatchSet(row)) {
               var e =
               <View style={{alignItems: 'center', flex: 1, height: 36, justifyContent: 'center'}}>
@@ -1105,6 +1118,8 @@
               </View>;
               return e;
           }
+
+          if (row.p1score === 0 && row.p2score === 0) return null;
 
           var r =
               <View style={[styles.oddRow, index % 2 === 0 && styles.evenRow, this.props.isGameBall(row) && styles.gameBall, this.props.isMatchBall(row) && styles.matchBall]} key={'key_' + index}>
